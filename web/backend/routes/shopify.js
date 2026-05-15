@@ -1,5 +1,6 @@
+import "@shopify/shopify-api/adapters/node";
+import { shopifyApi, LATEST_API_VERSION } from "@shopify/shopify-api";
 import { Router } from "express";
-import { shopifyApi, LATEST_API_VERSION, Session } from "@shopify/shopify-api";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -21,7 +22,7 @@ const shopify = shopifyApi({
   isEmbeddedApp: true,
 });
 
-// ─── Begin OAuth ─────────────────────────────────────────────────────────────
+// ─── Begin OAuth ──────────────────────────────────────────────
 router.get("/", async (req, res) => {
   try {
     await shopify.auth.begin({
@@ -37,20 +38,15 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ─── OAuth Callback ───────────────────────────────────────────────────────────
+// ─── OAuth Callback ───────────────────────────────────────────
 router.get("/callback", async (req, res) => {
   try {
     const callback = await shopify.auth.callback({
       rawRequest: req,
       rawResponse: res,
     });
-
-    // Store session in DB (simplified — use Prisma in production)
     const session = callback.session;
-    console.log(`✅ App installed for shop: ${session.shop}`);
-    console.log(`   Access Token: ${session.accessToken}`);
-
-    // Redirect to app
+    console.log(`✅ App installed: ${session.shop}`);
     res.redirect(`/?shop=${session.shop}&host=${req.query.host}`);
   } catch (error) {
     console.error("Auth callback error:", error);

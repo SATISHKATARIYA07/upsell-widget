@@ -1,26 +1,18 @@
 name = "upsell-crosssell-app"
-client_id = "YOUR_SHOPIFY_API_KEY"
-application_url = "https://YOUR_APP_URL.com"
+client_id = "f716178f8218faa0a1f9b379d5189e98"
+application_url = "https://upsell-crosssell-app.onrender.com"
 embedded = true
 
 [access_scopes]
-scopes = "read_products,write_products,read_orders,write_orders,read_checkouts,write_checkouts"
+scopes = "read_products,write_products,read_orders,write_orders,read_script_tags,write_script_tags"
 
 [auth]
 redirect_urls = [
-  "https://YOUR_APP_URL.com/api/auth/callback"
+  "https://upsell-crosssell-app.onrender.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-01"
-
-  [[webhooks.subscriptions]]
-  topics = ["orders/create"]
-  uri = "/api/webhooks/orders-create"
-
-  [[webhooks.subscriptions]]
-  topics = ["app/uninstalled"]
-  uri = "/api/webhooks/app-uninstalled"
 
 [pos]
 embedded = false
