@@ -1,0 +1,18 @@
+{
+  "name": "shopify-upsell-crosssell-app",
+  "version": "1.0.0",
+  "description": "Shopify Upsell & Cross-sell App",
+  "scripts": {
+    "dev": "shopify app dev",
+    "build": "npm run build --workspaces --if-present",
+    "deploy": "shopify app deploy",
+    "start": "npm run start --workspaces --if-present"
+  },
+  "workspaces": [
+    "web"
+  ],
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

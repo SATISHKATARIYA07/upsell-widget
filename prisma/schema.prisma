@@ -1,0 +1,55 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id          String    @id
+  shop        String
+  state       String
+  isOnline    Boolean   @default(false)
+  scope       String?
+  expires     DateTime?
+  accessToken String
+  userId      BigInt?
+  firstName   String?
+  lastName    String?
+  email       String?
+  accountOwner Boolean  @default(false)
+  locale      String?
+  collaborator Boolean? @default(false)
+  emailVerified Boolean? @default(false)
+}
+
+model UpsellRule {
+  id                  String   @id @default(cuid())
+  shop                String
+  triggerProductId    String
+  triggerProductTitle String
+  upsellProductId     String
+  upsellProductTitle  String
+  discountPercent     Int      @default(10)
+  type                String   @default("upsell") // "upsell" | "crosssell"
+  active              Boolean  @default(true)
+  impressions         Int      @default(0)
+  clicks              Int      @default(0)
+  conversions         Int      @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Analytics {
+  id          String   @id @default(cuid())
+  shop        String
+  ruleId      String
+  event       String   // "impression" | "click" | "conversion"
+  productId   String?
+  orderId     String?
+  revenue     Float?
+  createdAt   DateTime @default(now())
+}
