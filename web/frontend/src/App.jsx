@@ -2,10 +2,10 @@ import React from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { Frame, Navigation, TopBar, Page } from "@shopify/polaris";
 import {
-  HomeMinor,
-  ProductsMinor,
-  AnalyticsMinor,
-  SettingsMinor,
+  HomeIcon,
+  ProductIcon,
+  ChartVerticalIcon,
+  SettingsIcon,
 } from "@shopify/polaris-icons";
 
 import Dashboard from "./pages/Dashboard";
@@ -23,25 +23,25 @@ export default function App() {
         items={[
           {
             label: "Dashboard",
-            icon: HomeMinor,
+            icon: HomeIcon,
             url: "/",
             onClick: () => navigate("/"),
           },
           {
             label: "Upsell Rules",
-            icon: ProductsMinor,
+            icon: ProductIcon,
             url: "/rules",
             onClick: () => navigate("/rules"),
           },
           {
             label: "Analytics",
-            icon: AnalyticsMinor,
+            icon: ChartVerticalIcon,
             url: "/analytics",
             onClick: () => navigate("/analytics"),
           },
           {
             label: "Settings",
-            icon: SettingsMinor,
+            icon: SettingsIcon,
             url: "/settings",
             onClick: () => navigate("/settings"),
           },
