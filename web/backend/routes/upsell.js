@@ -87,8 +87,14 @@ router.patch("/rules/:id/toggle", (req, res) => {
 });
 
 // ─── GET upsell offer for a product (used by storefront widget) ───────────────
+// GET upsell offer for a product
 router.get("/offer/:productId", (req, res) => {
-  const { productId } = req.params;
+  let { productId } = req.params;
+
+  // ─── Fix: GID format handle કરો ──────────────
+  if (productId.includes("gid://shopify/Product/")) {
+    productId = productId.split("gid://shopify/Product/")[1];
+  }
 
   const matchingRule = upsellRules.find(
     (r) => r.triggerProductId === productId && r.active
