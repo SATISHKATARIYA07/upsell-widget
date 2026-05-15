@@ -8,6 +8,7 @@ import shopifyRoutes from "./routes/shopify.js";
 import upsellRoutes from "./routes/upsell.js";
 import webhookRoutes from "./routes/webhooks.js";
 
+
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -24,7 +25,7 @@ app.use("/api/auth", shopifyRoutes);
 app.use("/api/upsell", upsellRoutes);
 
 // Frontend serve
-const STATIC_PATH = join(__dirname, "../../frontend/dist");
+const STATIC_PATH = join(__dirname, "../frontend/dist");
 
 app.use(express.static(STATIC_PATH));
 
