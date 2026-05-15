@@ -7,7 +7,7 @@
 (function () {
   "use strict";
 
-  const APP_URL = "https://YOUR_APP_URL.com"; // Replace with your app URL
+  const APP_URL = "https://upsell-widget.onrender.com"; // Replace with your app URL
   const WIDGET_STYLE = `
     #upsell-widget-overlay {
       position: fixed;
